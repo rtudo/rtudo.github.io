@@ -1,0 +1,42 @@
+name: Deploy Jekyll Site with Gitbook Theme to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Set to your default branch (e.g., main or master)
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # Step 1: Setup Ruby for Jekyll build
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.x'
+          bundler-cache: true
+
+      - name: Install Jekyll and Ruby dependencies
+        run: bundle install
+
+      # Step 2: Build Jekyll site
+      - name: Build Jekyll site
+        run: bundle exec jekyll build --incremental
+
+      # Step 3: Deploy to GitHub Pages
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4 
