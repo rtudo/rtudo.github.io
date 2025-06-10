@@ -9,7 +9,7 @@ Large Language Models like Gemini are incredibly powerful. They have been traine
 
 This is where a Search **Tool** come in.
 
-## 2. But what is a tool ?
+## 2. But what is a Tool ?
 
 A tool is simply a function that the LLM can decide to call to get information or perform an action in the "real world." By giving our agent a `Google Search` tool, we are giving it a window to the live, up-to-the-minute internet.
 
@@ -77,7 +77,7 @@ if __name__ == "__main__":
         print(f"Snippet: {item.get('snippet', 'N/A')}\n")
 ```
 
-## 4. Breaking Down the Code
+###  Breaking Down the Code
 
 
 1.  **`load_dotenv()`**: This function is our starting point. It reads the `.env` file we created earlier and securely loads our `GOOGLE_API_KEY` and `GOOGLE_CSE_ID` into the environment, making them available to the LangChain wrappers without hardcoding them.
@@ -111,7 +111,7 @@ if __name__ == "__main__":
     ```
     This approach keeps our project organized and scalable. Our tools are defined in one place, and our agent's logic is defined in another.
 
-## 5. Running the Tool
+### Running the Tool
 
 If you run the script directly from your terminal, the `if __name__ == "__main__:"` block will execute.
 
