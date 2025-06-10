@@ -1,0 +1,4 @@
+dotenv~=0.9.9
+langchain_google_genai~=2.1.5
+langgraph~=0.4.8
+langchain_google_community~=2.0.7
