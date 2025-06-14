@@ -1,0 +1,73 @@
+/* .small-mermaid {
+    transform: scale(1); /* Adjust scale as needed */
+    /* width: min(200px, calc(90vw - 32px)); */
+    /* transform-origin: top left; */
+    /* width: fit-content; */
+  }  */
+
+  .md-typeset .admonition.agent-flow, .md-typeset details.agent-flow {
+    border-color: rgb(43, 155, 70);
+    /* width: 50px; */
+    /* height: 100px; */
+  }
+
+.hover-trigger {
+  position: relative;
+  display: inline-block; /* Changed from inline to allow for better positioning context */
+  cursor: pointer;
+  text-decoration: underline dotted;
+}
+
+.hover-box {
+  /* --- Base Styling & Positioning --- */
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 10px;
+  z-index: 10; /* Safely above most theme elements */
+
+  /* --- Appearance (using theme variables) --- */
+  background: var(--md-code-bg-color);
+  color: var(--md-default-fg-color);
+  border-radius: .1rem; /* Match theme's border-radius */
+  box-shadow: var(--md-shadow-z2); /* Use theme's shadow for depth */
+  padding: 0.75em 1em;
+  font-size: 0.8rem; /* Match theme's general text size */
+
+  /* --- Sizing (The Responsive Part) --- */
+  width: max-content; /* Let the box fit its content by default */
+  /* This is the key: it can't be wider than 300px OR the viewport width minus some padding */
+  max-width: min(500px, calc(90vw - 32px));
+
+  /* --- Animation --- */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+/* --- Modifier to show box BELOW the trigger (controlled by JS) --- */
+.hover-box.show-below {
+  bottom: auto;
+  top: 100%;
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+
+/* --- Horizontal alignment modifiers (controlled by JS) --- */
+.hover-box.align-left {
+  left: 0;
+  transform: translateX(0);
+}
+
+.hover-box.align-right {
+  left: auto;
+  right: 0;
+  transform: translateX(0);
+}
+
+/* --- Show the box on hover --- */
+.hover-trigger:hover .hover-box {
+  opacity: 1;
+  visibility: visible;
+}
