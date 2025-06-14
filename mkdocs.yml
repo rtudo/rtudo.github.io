@@ -1,0 +1,106 @@
+# mkdocs.yml
+
+# Site Information
+site_name: Langgraph with Google
+site_url: https://rtudo.github.io/ai/langgraph
+site_description: A collection of technical write-ups for building ai agents with Gemini Models. Focus is on working code for langgraph within Google Ecosystem.
+repo_url: https://github.com/rtudo/rtudo.github.io
+repo_name: rtudo.github.io
+
+# Theme Configuration
+theme:
+  name: material
+  custom_dir: overrides # Optional: for custom overrides
+  features:
+    # - navigation.tabs # Top-level tabs for main sections
+    - navigation.sections # Sections in the left sidebar
+    - navigation.indexes # Show index.md for each section
+    # - toc.integrate # Integrate table of contents into main content area
+    - content.code.copy # Enable copy button for code blocks
+    - content.code.annotate # Enable code annotations
+    - content.tabs.link # Linkable tabs in content
+    - header.autohide # Header hides on scroll down, shows on scroll up
+    - search.highlight # Highlight search results
+    - search.suggest # Search suggestions
+    - search.share # Share search results
+    - sticky.tabs # Tabs stick to the top on scroll
+    - content.tooltips
+    - content.icon.fontawesome # Enable Font Awesome icons
+  palette: # Color scheme
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      accent: lime
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/favicon.png # Optional: Add your favicon
+
+# Navigation (This defines your left sidebar structure)
+# IMPORTANT: Adjust this to match your 'docs/' folder structure
+nav:
+  - Home: index.md # 'index.md' in your docs/ folder
+  - Introduction: ai/langgraph/intro.md
+  - Setting up the Enviornment: ai/langgraph/setup.md
+  - Not an Agent: ai/langgraph/not-an-agent.md
+  - Still Not an Agent: ai/langgraph/still-not-an-agent.md
+  - Just a Tool: ai/langgraph/just-a-tool.md
+  - Agent, AI Agent: ai/langgraph/agent-007.md
+  - Building an Agent: ai/langgraph/building-an-agent.md
+
+# Markdown Extensions (Enhance Markdown features)
+markdown_extensions:
+  - attr_list # Allows adding HTML attributes to Markdown elements
+  - md_in_html # Allows Markdown inside HTML
+  - admonition # For callouts (notes, warnings, tips)
+  - pymdownx.details # For expandable details blocks
+  - pymdownx.superfences: # Enhanced code blocks
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight: # Code highlighting
+      anchor_linenums: true
+      linenums: true # Show line numbers in code blocks
+  - pymdownx.snippets # Include content from other files
+  - pymdownx.tabbed: # Tabs in content
+      alternate_style: true
+  - pymdownx.tasklist: # Task lists (checkboxes)
+      custom_checkbox: true
+  - toc: # Table of Contents
+      permalink: true
+      toc_depth: 3 # Generate TOC up to H3
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+# Plugins (Add extra functionality)
+plugins:
+  - search # Built-in search
+  - social # Generate social media cards
+  - privacy # Privacy features (e.g., for embeds)
+
+# Extra CSS/JavaScript (for custom styles if needed)
+extra_css:
+  - ai/langgraph/stylesheets/extra.css # Optional: Create this file for custom CSS
+
+extra_javascript:
+  - ai/langgraph/js/tooltip.js
+
+
+# Extra files (e.g., images, favicons, custom CSS)
+extra_templates:
+  - custom_template.html # Optional: For highly custom overrides if custom_dir is set
+
+# Copyright information
+copyright: Copyright &copy; {{ now().year }} My Awesome Tutorials

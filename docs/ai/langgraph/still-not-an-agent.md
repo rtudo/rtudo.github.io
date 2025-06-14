@@ -89,7 +89,6 @@ Let's visualize the difference.
 
 !!! info inline "Our Chatbot's Flow"
     Our chatbot follows a simple, repetitive loop. It has no ability to deviate from this path.
-    <div class="scaled-mermaid">
     ```mermaid
     graph TD
         A(Start) --> B[Get User Input];
@@ -97,11 +96,9 @@ Let's visualize the difference.
         C --> D[Print LLM Output];
         D --> B;
     ```
-    </div>
 
 !!! info inline end "A True Agent's Flow"
     An agent has branching logic. It can **decide** whether to call a tool or talk to the LLM. This decision-making is the core of what makes it an agent.
-    <div class="scaled-mermaid">
     ```mermaid
     graph TD
         A[User Question] --> B{Agent Decides};
@@ -109,7 +106,6 @@ Let's visualize the difference.
         C -- "Tool Result" --> B;
         B -- "Have Enough Info" --> D[Generate Final Answer];
     ```
-    </div>
 
 The key takeaway is this: Our chatbot is a linear "pass-through." An agent is a cyclical system with a reasoning loop that can plan and execute a series of steps.
 

@@ -32,7 +32,6 @@ This is a question I see a lot. While can certainly build agents from scratch, f
   * **Accelerated Development:** Frameworks handle the boilerplate code and low-level complexities, letting one focus on the agent's core logic. Frameworks help avoid reinventing the wheel.
   * **Managing Complexity:** As agent's capabilities grow, so does its complexity. LangGraph's graph structure provides a clear, visual way to manage complex workflows. I find the reusability of graphs to be a huge plus.
 !!! info inline end "Flow Chart"
-    <div class="scaled-mermaid">
     ```mermaid
     graph TD
         A[Start: User Question] --> B{Agent};
@@ -40,7 +39,6 @@ This is a question I see a lot. While can certainly build agents from scratch, f
         C --> B;
         B --> D[End: Final Answer];
     ```
-    </div>
   * **Visualizing the Flow:** The graph paradigm makes it intuitive to understand the agent's decision-making process. 
   * **Trade-offs to Consider:** Like any framework (e.g., Spring Boot for web development), there are trade-offs. The absolute latest LLM features might not be integrated overnight. And for highly latency-sensitive applications, one might still want to consider a "raw" implementation for maximum control.
 

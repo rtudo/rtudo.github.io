@@ -33,7 +33,7 @@ An agent can be equipped with any number of tools to interact with the world. Fe
 </div>
 
 
-## 3. Building the Google Search Tool
+## 3. Building the Search Tool
 
 Let's write some code. We'll create a simple Python script that defines our Google Search tool using the libraries we installed earlier.
 
@@ -140,4 +140,4 @@ Success! We've created a standalone, functional tool that can fetch real-time in
 
 ---
 
-Right now, our tool is just a Python object in a script. It's not yet part of an agent. In the next section, we'll take this tool and integrate it into our very first **LangGraph State Graph**. This is where the magic really begins.
+Right now, our tool is just a Python object in a script. It's not yet part of an agent. In the next section, we'll take this tool and integrate it into our very first **LangGraph State Graph**. This is where the magic (so perceived) really begins.
