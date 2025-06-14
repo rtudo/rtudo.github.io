@@ -88,6 +88,11 @@ plugins:
   - search # Built-in search
   - social # Generate social media cards
   - privacy # Privacy features (e.g., for embeds)
+  - redirects:
+      redirect_maps:
+        'ai/langgraph': 'ai/langgraph/intro'
+        'ai/': '404.html'
+        '/': '404.html'
 
 # Extra CSS/JavaScript (for custom styles if needed)
 extra_css:
