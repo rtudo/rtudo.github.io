@@ -2,7 +2,7 @@
 
 # Site Information
 site_name: Langgraph with Google
-site_url: https://rtudo.github.io/ai/langgraph
+site_url: https://rtudo.github.io
 site_description: A collection of technical write-ups for building ai agents with Gemini Models. Focus is on working code for langgraph within Google Ecosystem.
 repo_url: https://github.com/rtudo/rtudo.github.io
 repo_name: rtudo.github.io
@@ -30,9 +30,6 @@ theme:
     - navigation.sections
     - navigation.top
     - navigation.tracking
-    - search.highlight
-    - search.share
-    - search.suggest
     - toc.follow
   palette: # Color scheme
     - media: "(prefers-color-scheme: light)"
@@ -103,7 +100,6 @@ plugins:
   #       'ai/langgraph': 'ai/langgraph/intro'
   #       'ai/': '404.html'
   #       '/': '404.html'
-  - search
   - minify:
       minify_html: true
       minify_js: true
@@ -120,8 +116,8 @@ extra_javascript:
 
 
 # Extra files (e.g., images, favicons, custom CSS)
-extra_templates:
-  - custom_template.html # Optional: For highly custom overrides if custom_dir is set
+# extra_templates:
+  # - custom_template.html # Optional: For highly custom overrides if custom_dir is set
 
 use_directory_urls: true
 
