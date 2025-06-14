@@ -49,7 +49,6 @@ theme:
 # Navigation (This defines your left sidebar structure)
 # IMPORTANT: Adjust this to match your 'docs/' folder structure
 nav:
-  - Home: index.md # 'index.md' in your docs/ folder
   - Introduction: ai/langgraph/intro.md
   - Setting up the Enviornment: ai/langgraph/setup.md
   - Not an Agent: ai/langgraph/not-an-agent.md
@@ -104,3 +103,8 @@ extra_templates:
 
 # Copyright information
 copyright: Copyright &copy; {{ now().year }} My Awesome Tutorials
+
+# Extra configuration for static files
+extra:
+  static_verification_files:
+    - google1934369b7ae8746a.html
