@@ -1,9 +1,9 @@
 # mkdocs.yml
 
 # Site Information
-site_name: Langgraph with Google
+site_name: LangGraph Tutorial with Google
 site_url: https://rtudo.github.io
-site_description: A collection of technical write-ups for building ai agents with Gemini Models. Focus is on working code for langgraph within Google Ecosystem.
+site_description: Technical write-ups for building ai agents with Gemini Models. Focus is on working code for langgraph within Google Ecosystem. An Alternative LangGraph Tutorial destination.
 repo_url: https://github.com/rtudo/rtudo.github.io
 repo_name: rtudo.github.io
 copyright: Copyright &copy; 2025 @ rtudo.github.io
@@ -13,7 +13,7 @@ theme:
   custom_dir: overrides # Optional: for custom overrides
   features:
     # - navigation.tabs # Top-level tabs for main sections
-    - navigation.sections # Sections in the left sidebar
+    # - navigation.sections # Sections in the left sidebar
     - navigation.indexes # Show index.md for each section
     # - toc.integrate # Integrate table of contents into main content area
     - content.code.copy # Enable copy button for code blocks
@@ -26,8 +26,6 @@ theme:
     - sticky.tabs # Tabs stick to the top on scroll
     - content.tooltips
     # - navigation.footer
-    - navigation.indexes
-    - navigation.sections
     - navigation.top
     - navigation.tracking
     - toc.follow
@@ -54,13 +52,15 @@ theme:
 # Navigation (This defines your left sidebar structure)
 # IMPORTANT: Adjust this to match your 'docs/' folder structure
 nav:
-  - Introduction: ai/langgraph/intro.md
-  - Setting up the Enviornment: ai/langgraph/setup.md
-  - Not an Agent: ai/langgraph/not-an-agent.md
-  - Still Not an Agent: ai/langgraph/still-not-an-agent.md
-  - Just a Tool: ai/langgraph/just-a-tool.md
-  - Agent, AI Agent: ai/langgraph/agent-007.md
-  - Building an Agent: ai/langgraph/building-an-agent.md
+  - Getting Started:
+    # - ai/langgraph/index.md
+    - Introduction: ai/langgraph/index.md
+    - Setting up the Enviornment: ai/langgraph/setup.md
+    - Not an Agent: ai/langgraph/not-an-agent.md
+    - Still Not an Agent: ai/langgraph/still-not-an-agent.md
+    - Just a Tool: ai/langgraph/just-a-tool.md
+    - Agent, AI Agent: ai/langgraph/agent-007.md
+    - Building an Agent: ai/langgraph/building-an-agent.md
 
 # Markdown Extensions (Enhance Markdown features)
 markdown_extensions:
@@ -107,6 +107,10 @@ plugins:
       htmlmin_opts:
           remove_comments: true
       cache_safe: true
+      js_files:
+          - ai/langgraph/js/tooltip.js
+      css_files:
+          - ai/langgraph/stylesheets/extra.css
 # Extra CSS/JavaScript (for custom styles if needed)
 extra_css:
   - ai/langgraph/stylesheets/extra.css # Optional: Create this file for custom CSS
