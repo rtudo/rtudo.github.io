@@ -6,7 +6,7 @@ site_url: https://rtudo.github.io/ai/langgraph
 site_description: A collection of technical write-ups for building ai agents with Gemini Models. Focus is on working code for langgraph within Google Ecosystem.
 repo_url: https://github.com/rtudo/rtudo.github.io
 repo_name: rtudo.github.io
-
+copyright: Copyright &copy; 2025 @ rtudo.github.io
 # Theme Configuration
 theme:
   name: material
@@ -25,7 +25,15 @@ theme:
     - search.share # Share search results
     - sticky.tabs # Tabs stick to the top on scroll
     - content.tooltips
-    - content.icon.fontawesome # Enable Font Awesome icons
+    # - navigation.footer
+    - navigation.indexes
+    - navigation.sections
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
   palette: # Color scheme
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -82,18 +90,27 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  # - footnotes
+  - meta
 
 # Plugins (Add extra functionality)
 plugins:
   - search # Built-in search
   - social # Generate social media cards
   - privacy # Privacy features (e.g., for embeds)
-  - redirects:
-      redirect_maps:
-        'ai/langgraph': 'ai/langgraph/intro'
-        'ai/': '404.html'
-        '/': '404.html'
-
+  # - redirects:
+  #     redirect_maps:
+  #       'ai/langgraph': 'ai/langgraph/intro'
+  #       'ai/': '404.html'
+  #       '/': '404.html'
+  - search
+  - minify:
+      minify_html: true
+      minify_js: true
+      minify_css: true
+      htmlmin_opts:
+          remove_comments: true
+      cache_safe: true
 # Extra CSS/JavaScript (for custom styles if needed)
 extra_css:
   - ai/langgraph/stylesheets/extra.css # Optional: Create this file for custom CSS
@@ -106,10 +123,14 @@ extra_javascript:
 extra_templates:
   - custom_template.html # Optional: For highly custom overrides if custom_dir is set
 
-# Copyright information
-copyright: Copyright &copy; {{ now().year }} My Awesome Tutorials
+use_directory_urls: true
 
 # Extra configuration for static files
 extra:
+  generator: false
   static_verification_files:
     - google1934369b7ae8746a.html
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/rtudo/rtudo.github.io
+      name: GitHub
