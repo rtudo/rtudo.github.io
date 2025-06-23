@@ -61,6 +61,8 @@ nav:
     - Just a Tool: ai/langgraph/just-a-tool.md
     - Agent, AI Agent: ai/langgraph/agent-007.md
     - Building an Agent: ai/langgraph/building-an-agent.md
+  - Levelling Up:
+    - Agent with Memory: ai/langgraph/agent-with-memory.md
 
 # Markdown Extensions (Enhance Markdown features)
 markdown_extensions:

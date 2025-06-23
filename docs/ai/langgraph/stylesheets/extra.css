@@ -1,16 +1,3 @@
-/* .small-mermaid {
-    transform: scale(1); /* Adjust scale as needed */
-    /* width: min(200px, calc(90vw - 32px)); */
-    /* transform-origin: top left; */
-    /* width: fit-content; */
-  }  */
-
-  .md-typeset .admonition.agent-flow, .md-typeset details.agent-flow {
-    border-color: rgb(43, 155, 70);
-    /* width: 50px; */
-    /* height: 100px; */
-  }
-
 .hover-trigger {
   position: relative;
   display: inline-block; /* Changed from inline to allow for better positioning context */
