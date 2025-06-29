@@ -87,7 +87,7 @@ load_dotenv()
 class State(TypedDict):
     messages: Annotated[list, add_messages]
 
-llm = ChatGoogleGenerativeAI(model="gemini-1.5-flash")
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 search = GoogleSearchAPIWrapper()
 google_search_tool = Tool(
     name="google_search",

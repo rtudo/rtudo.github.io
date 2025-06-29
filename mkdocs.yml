@@ -63,6 +63,7 @@ nav:
     - Building an Agent: ai/langgraph/building-an-agent.md
   - Levelling Up:
     - Agent with Memory: ai/langgraph/agent-with-memory.md
+    - Agent with Human Assistance: ai/langgraph/agent-with-human-assistance.md
 
 # Markdown Extensions (Enhance Markdown features)
 markdown_extensions:
