@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://rtudo.github.io/ai/langgraph/</loc>
-         <lastmod>2025-06-23</lastmod>
+         <lastmod>2025-06-29</lastmod>
     </url>
     <url>
          <loc>https://rtudo.github.io/ai/langgraph/agent-007/</loc>
-         <lastmod>2025-06-23</lastmod>
+         <lastmod>2025-06-29</lastmod>
+    </url>
+    <url>
+         <loc>https://rtudo.github.io/ai/langgraph/agent-with-human-assistance/</loc>
+         <lastmod>2025-06-29</lastmod>
     </url>
     <url>
          <loc>https://rtudo.github.io/ai/langgraph/agent-with-memory/</loc>
-         <lastmod>2025-06-23</lastmod>
+         <lastmod>2025-06-29</lastmod>
     </url>
     <url>
          <loc>https://rtudo.github.io/ai/langgraph/building-an-agent/</loc>
-         <lastmod>2025-06-23</lastmod>
+         <lastmod>2025-06-29</lastmod>
     </url>
     <url>
          <loc>https://rtudo.github.io/ai/langgraph/just-a-tool/</loc>
-         <lastmod>2025-06-23</lastmod>
+         <lastmod>2025-06-29</lastmod>
     </url>
     <url>
          <loc>https://rtudo.github.io/ai/langgraph/not-an-agent/</loc>
-         <lastmod>2025-06-23</lastmod>
+         <lastmod>2025-06-29</lastmod>
     </url>
     <url>
          <loc>https://rtudo.github.io/ai/langgraph/setup/</loc>
-         <lastmod>2025-06-23</lastmod>
+         <lastmod>2025-06-29</lastmod>
     </url>
     <url>
          <loc>https://rtudo.github.io/ai/langgraph/still-not-an-agent/</loc>
-         <lastmod>2025-06-23</lastmod>
+         <lastmod>2025-06-29</lastmod>
     </url>
 </urlset>
