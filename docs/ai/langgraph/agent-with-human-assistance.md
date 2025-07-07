@@ -18,15 +18,17 @@ This feature is perfect for human oversight. We can let the agent do its automat
 With a hardcoded interrupt, our agent's process will look a little different. After the tool runs, the graph will pause and wait for our signal to continue.
 
 ```mermaid
-graph TD
+graph LR
     A[Start] --> B(Chatbot Node: Generates Tool Call);
     B --> C{tools_condition};
     C --> D[Tool Node: Executes Google Search];
-    D --> E((PAUSE: Human Intervention));
-    subgraph Human in the Loop
+    D --> s;
+    subgraph s [Human in the Loop]
+        direction TB
+        E((PAUSE: Human Intervention))
         E -- User Approves --> F(Chatbot Node: Generates Final Answer);
     end
-    F --> G[End];
+    s --> G[End];
     C --> G;
 ```
 
@@ -46,85 +48,86 @@ Why interrupt *before* the `chatbot` node? Because the `chatbot` node is respons
 
 Here's the complete code. The core logic of our nodes remains untouched. The changes are all in the final section where we compile the graph and interact with it.
 
-```python title="agent_with_hardcoded_interrupt.py" hl_lines="47 52-66"
-import os
-import json
-from typing import Annotated, TypedDict
+??? "Full Code"
+    ```python title="agent_with_hardcoded_interrupt.py" hl_lines="47 52-66"
+    import os
+    import json
+    from typing import Annotated, TypedDict
 
-from dotenv import load_dotenv
-from langchain_core.messages import ToolMessage, HumanMessage
-from langchain_core.tools import Tool
-from langchain_google_community import GoogleSearchAPIWrapper
-from langchain_google_genai import ChatGoogleGenerativeAI
-from langgraph.graph import StateGraph, END, START
-from langgraph.graph.message import add_messages
-from langgraph.prebuilt import ToolNode, tools_condition
-from langgraph.checkpoint.memory import MemorySaver
+    from dotenv import load_dotenv
+    from langchain_core.messages import ToolMessage, HumanMessage
+    from langchain_core.tools import Tool
+    from langchain_google_community import GoogleSearchAPIWrapper
+    from langchain_google_genai import ChatGoogleGenerativeAI
+    from langgraph.graph import StateGraph, END, START
+    from langgraph.graph.message import add_messages
+    from langgraph.prebuilt import ToolNode, tools_condition
+    from langgraph.checkpoint.memory import MemorySaver
 
-# --- Standard Setup ---
-load_dotenv()
+    # --- Standard Setup ---
+    load_dotenv()
 
-class State(TypedDict):
-    messages: Annotated[list, add_messages]
+    class State(TypedDict):
+        messages: Annotated[list, add_messages]
 
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
-search = GoogleSearchAPIWrapper()
-google_search_tool = Tool(
-    name="google_search",
-    description="Search Google for recent results about current events.",
-    func=search.run,
-)
-tools = [google_search_tool]
-llm_with_tools = llm.bind_tools(tools)
+    llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
+    search = GoogleSearchAPIWrapper()
+    google_search_tool = Tool(
+        name="google_search",
+        description="Search Google for recent results about current events.",
+        func=search.run,
+    )
+    tools = [google_search_tool]
+    llm_with_tools = llm.bind_tools(tools)
 
-# --- Node Definitions & Graph Assembly ---
-def chatbot(state: State):
-    print("---CHATBOT---")
-    return {"messages": [llm_with_tools.invoke(state["messages"])]}
+    # --- Node Definitions & Graph Assembly ---
+    def chatbot(state: State):
+        print("---CHATBOT---")
+        return {"messages": [llm_with_tools.invoke(state["messages"])]}
 
-tool_node = ToolNode(tools)
+    tool_node = ToolNode(tools)
 
-graph_builder = StateGraph(State)
-graph_builder.add_node("chatbot", chatbot)
-graph_builder.add_node("tools", tool_node)
-graph_builder.add_edge(START, "chatbot")
-graph_builder.add_conditional_edges("chatbot", tools_condition)
-graph_builder.add_edge("tools", "chatbot")
+    graph_builder = StateGraph(State)
+    graph_builder.add_node("chatbot", chatbot)
+    graph_builder.add_node("tools", tool_node)
+    graph_builder.add_edge(START, "chatbot")
+    graph_builder.add_conditional_edges("chatbot", tools_condition)
+    graph_builder.add_edge("tools", "chatbot")
 
-# --- Add Memory and Interrupts ---
-memory = MemorySaver()
-# Compile the graph, interrupting before the "chatbot" node runs.
-graph = graph_builder.compile(
-    checkpointer=memory,
-    interrupt_before=["chatbot"], # 👈 The magic happens here!
-)
+    # --- Add Memory and Interrupts ---
+    memory = MemorySaver()
+    # Compile the graph, interrupting before the "chatbot" node runs.
+    graph = graph_builder.compile(
+        checkpointer=memory,
+        interrupt_before=["chatbot"], # 👈 The magic happens here!
+    )
 
-config = {"configurable": {"thread_id": "user-456"}}
+    config = {"configurable": {"thread_id": "user-456"}}
 
-# --- The Human-in-the-Loop Interaction ---
-user_input = "What's the latest news on the Mars rover?"
-# Start the graph, but it will pause before the final chatbot response
-graph.invoke({"messages": [("user", user_input)]}, config=config)
+    # --- The Human-in-the-Loop Interaction ---
+    user_input = "What's the latest news on the Mars rover?"
+    # Start the graph, but it will pause before the final chatbot response
+    graph.invoke({"messages": [("user", user_input)]}, config=config)
 
-# The graph is now paused. We can inspect its state.
-paused_state = graph.get_state(config)
-print("\n--- Graph Paused ---")
-print("Next step:", paused_state.next) # This will be ('chatbot',)
-print("Messages in current state:")
-# The last message is the result from our Google Search tool
-print(paused_state.values['messages'][-1])
+    # The graph is now paused. We can inspect its state.
+    paused_state = graph.get_state(config)
+    print("\n--- Graph Paused ---")
+    print("Next step:", paused_state.next) # This will be ('chatbot',)
+    print("Messages in current state:")
+    # The last message is the result from our Google Search tool
+    print(paused_state.values['messages'][-1])
 
-# Let the user decide to continue
-print("\nPress Enter to allow the agent to generate the final response...")
-input()
+    # Let the user decide to continue
+    print("\nPress Enter to allow the agent to generate the final response...")
+    input()
 
-# Resume the graph by invoking it with `None`. It will continue from where it left off.
-final_result = graph.invoke(None, config=config)
+    # Resume the graph by invoking it with `None`. It will continue from where it left off.
+    final_result = graph.invoke(None, config=config)
 
-print("\n--- Agent Finished ---")
-print(f"Assistant: {final_result['messages'][-1].content}")
+    print("\n--- Agent Finished ---")
+    print(f"Assistant: {final_result['messages'][-1].content}")
 
-```
+    ```
 
 ## Running the Code: A Guided Tour
 

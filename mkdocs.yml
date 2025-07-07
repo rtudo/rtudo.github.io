@@ -64,6 +64,7 @@ nav:
   - Levelling Up:
     - Agent with Memory: ai/langgraph/agent-with-memory.md
     - Agent with Human Assistance: ai/langgraph/agent-with-human-assistance.md
+    - Advance State Management: ai/langgraph/advance-state-management.md
 
 # Markdown Extensions (Enhance Markdown features)
 markdown_extensions:
